@@ -5,8 +5,6 @@ using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour
 {
-    // Juego ganado
-    bool gano = false;
 
     // Boton "Comenzar"
     GameObject boton;
@@ -40,8 +38,30 @@ public class GameManager : MonoBehaviour
     }
 
     /* -------------------------------------------------------------------------------- */
-    
 
+    void FixedUpdate() {
+
+        GameObject pelota = GameObject.Find("Pelota");
+
+        Transform transformPelota = pelota.GetComponent<Transform>();
+
+        Vector3 posicionPelota = transformPelota.position;
+
+        Debug.Log(posicionPelota);
+
+        posicionPelota = new Vector3(posicionPelota.x + 0.05f , posicionPelota.y + 0.05f , posicionPelota.z);
+
+        transformPelota.position = posicionPelota;
+
+        // Se modifica el vector posicion con la posicion correspondiente
+        //Vector3 posicionVector = new Vector3(posicion.position.x + offsetX, posicion.position.y, posicion.position.z + offsetZ);
+
+        // Se aplica la posicion
+        //posicion.position = posicionVector;
+
+
+
+    }
 
     /* -------------------------------------------------------------------------------- */
 

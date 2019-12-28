@@ -73,5 +73,5 @@ public class ManejarMenu : MonoBehaviour
 
     /* -------------------------------------------------------------------------------- */
 
-    void activarTimer() { FindObjectOfType<Timer>().toggleClock(!flag); }
+    //void activarTimer() { FindObjectOfType<Timer>().toggleClock(!flag); }
 }

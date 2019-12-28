@@ -1,0 +1,7 @@
+-- < Tareas > --
+- Crear Mapa basico
+- Crear pelota
+- Generar movimiento infinito de pelota
+- Generar rebotes de pelota con mapa
+- Crear sistema para acelerar pelota cada vez que tocada
+- Generar sistema de strickes al errar la pelota
