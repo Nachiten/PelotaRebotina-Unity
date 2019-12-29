@@ -10,10 +10,40 @@ public class movimientoPelota : MonoBehaviour
         
     }
 
+    int strikes = 0;
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (hit.collider == null) {
+                sumarUnStrike();
+                return;
+            }
+
+            if (hit.collider.gameObject.name == "Pelota")
+            {
+                if (velocidadX > 0) velocidadX += 1f; else velocidadX -= 1f;
+
+                if (velocidadY > 0) velocidadY += 1f; else velocidadY -= 1f;
+            }
+            else {
+                sumarUnStrike();
+            }
+        }
+
         
+    }
+
+    void sumarUnStrike() {
+        strikes++;
+        Debug.Log("Cantidad de STIKES: " + strikes);
     }
 
     float velocidadX = 3;
@@ -22,6 +52,8 @@ public class movimientoPelota : MonoBehaviour
     void FixedUpdate()
     {
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocidadX, velocidadY);
+
+        //Debug.Log("Velocidad X: " + velocidadX + " | Velocidad Y: " + velocidadY);
     }
 
     private void OnCollisionEnter2D(Collision2D elementoGolpeado)
