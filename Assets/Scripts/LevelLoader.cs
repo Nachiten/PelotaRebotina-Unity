@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Analytics;
+//using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
@@ -100,10 +100,10 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(cargarAsincronizadamente(index));
         textoNivel.text ="Cargando " + SceneManager.GetSceneByBuildIndex(index).name + " ...";
 
-        if (index != 7) { 
-            AnalyticsResult result =  AnalyticsEvent.Custom("Ingreso_" + SceneManager.GetSceneByBuildIndex(index).name);
-            Debug.Log("Analytics Result: " + result + " | DATA: " + "Ingreso_" + SceneManager.GetSceneByBuildIndex(index).name);
-        }
+        //if (index != 7) { 
+            //AnalyticsResult result =  AnalyticsEvent.Custom("Ingreso_" + SceneManager.GetSceneByBuildIndex(index).name);
+            //Debug.Log("Analytics Result: " + result + " | DATA: " + "Ingreso_" + SceneManager.GetSceneByBuildIndex(index).name);
+        //}
     }
 
     /* -------------------------------------------------------------------------------- */

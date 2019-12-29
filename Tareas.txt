@@ -1,6 +1,8 @@
 -- < Tareas POR HACER> --
-- Terminar INICIO y hacer funcionar de forma correcta
-
+- Terminar y hacer funcionar de forma correcta escena "Inicio"
+- Generar sistema de varios niveles
+- Terminar sistema de perder (mostrar mensaje)
+- Almacenar puntaje maximo
 
 -- < Tareas HECHAS> --
 - Crear Mapa basico :D
