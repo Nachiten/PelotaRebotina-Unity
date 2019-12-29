@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class movimientoPelota : MonoBehaviour
 {
-    float velocidadX;
-    float velocidadY;
+    public float velocidadX;
+    public float velocidadY;
 
     // Start is called before the first frame update
     void Start()
@@ -23,85 +23,63 @@ public class movimientoPelota : MonoBehaviour
         return numeroRandom;
     }
 
-    int strikes = 0;
-    int correctas = 0;
-
-    bool perdio = false;
 
     // Update is called once per frame
     void Update()
     {
-
-        if (perdio) return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            if (hit.collider == null) {
-                sumarUnStrike();
-                return;
-            }
-
-            if (hit.collider.gameObject.tag == "PelotaCorrecta")
-            {
-                if (velocidadX > 0) velocidadX += 1f; else velocidadX -= 1f;
-
-                if (velocidadY > 0) velocidadY += 1f; else velocidadY -= 1f;
-
-                sumarUnaCorrecta();
-            }
-            else {
-                sumarUnStrike();
-            }
-        }
-
-
     }
 
-    void sumarUnaCorrecta() {
-        correctas++;
+    public void aumentarVelocidad() {
 
-        GameObject.Find("Cant Correctas").GetComponent<Text>().text = correctas.ToString();
-        //Debug.Log("Cantidad de Correctas: " + strikes);
+        float aumentoVelocidad = 0.3f;
+
+        if (velocidadX > 0) velocidadX += aumentoVelocidad; else velocidadX -= aumentoVelocidad;
+
+        if (velocidadY > 0) velocidadY += aumentoVelocidad; else velocidadY -= aumentoVelocidad;
     }
 
-    void sumarUnStrike() {
-
-        strikes++;
-
-        if (strikes == 3)
-        {
-            perdio = true;
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        }
-        GameObject.Find("Cant Strikes").GetComponent<Text>().text = strikes.ToString();
-        //Debug.Log("Cantidad de STIKES: " + strikes);
-    }
 
     void FixedUpdate()
     {
-        if (perdio) return;
+        if (detectarClicks.perdio) {
 
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocidadX, velocidadY);
+            cambiarVelocidadA(0, 0);
+            return;
 
-        Debug.Log("Velocidad X: " + velocidadX + " | Velocidad Y: " + velocidadY);
+        }
+
+        cambiarVelocidadA(velocidadX, velocidadY);
+
+        //Debug.Log("Velocidad X: " + velocidadX + " | Velocidad Y: " + velocidadY);
     }
 
-    private void OnCollisionEnter2D(Collision2D elementoGolpeado)
+    void cambiarVelocidadA(float valorX, float valorY) {
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(valorX, valorY);
+    }
+
+    // Cuando se golpea 
+    private void OnTriggerEnter2D(Collider2D elementoGolpeado)
     {
 
         string nombreGolpe = elementoGolpeado.gameObject.name;
 
-        if (nombreGolpe == "Pared Arriba" || nombreGolpe == "Pared Abajo")
-        velocidadY *= -1;
+        switch (nombreGolpe) 
+        {
+            case "Pared Arriba":
+            case "Pared Abajo":
+                velocidadY *= -1;
+                break;
 
-        else
-        velocidadX *= -1;
-        
-        //Debug.Log(elementoGolpeado.gameObject.name);
+            case "Pared Izquierda":
+            case "Pared Derecha":
+                velocidadX *= -1;
+                break;
+        }
+
+        //Debug.Log("Entro en OnTriggerEnter2D");
+    }
+
+    public void perder() {
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 }
