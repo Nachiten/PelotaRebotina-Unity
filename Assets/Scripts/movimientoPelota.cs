@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class movimientoPelota : MonoBehaviour
 {
@@ -42,7 +43,11 @@ public class movimientoPelota : MonoBehaviour
     }
 
     void sumarUnStrike() {
+
+        if (strikes == 4) return;
+
         strikes++;
+        GameObject.Find("Cant Strikes").GetComponent<Text>().text = strikes.ToString();
         Debug.Log("Cantidad de STIKES: " + strikes);
     }
 
