@@ -1,5 +1,4 @@
 -- < Tareas POR HACER> --
-- Terminar y hacer funcionar de forma correcta escena "Inicio"
 - Generar sistema de varios niveles
 - Terminar sistema de perder (mostrar mensaje)
 - Almacenar puntaje maximo
@@ -11,5 +10,5 @@
 - Generar rebotes de pelota con mapa :D
 - Crear sistema para acelerar pelota cada vez que tocada :D
 - Generar sistema de strickes al errar la pelota :D
-
+- Terminar y hacer funcionar de forma correcta escena "Inicio"
 

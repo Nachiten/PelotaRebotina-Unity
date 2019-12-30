@@ -41,20 +41,6 @@ public class LevelLoader : MonoBehaviour
 
         // Ocultar pantalla de carga
         levelLoader.SetActive(false);
-
-        if (SceneManager.GetActiveScene().buildIndex == 12) {
-
-            juego1 = GameObject.Find("Canvas Juego1");
-            juego2 = GameObject.Find("Canvas Juego2");
-
-            juego1.SetActive(false);
-            scanJuego(2);
-
-            juego1.SetActive(true);
-            juego2.SetActive(false);
-            scanJuego(1);
-            
-        }
     }
 
     /* -------------------------------------------------------------------------------- */

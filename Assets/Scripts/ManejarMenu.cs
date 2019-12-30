@@ -15,6 +15,9 @@ public class ManejarMenu : MonoBehaviour
     // Boton Continuar/Comenzar
     static Text boton;
 
+    // Pantalla carga
+    static GameObject pantallaCarga;
+
     // Index de escena actual
     int index;
 
@@ -28,6 +31,7 @@ public class ManejarMenu : MonoBehaviour
         {
             menu = GameObject.Find("Menu");
             boton = GameObject.Find("TextoBotonComenzar").GetComponent<Text>();
+
             flag = false;
         }
 
@@ -36,7 +40,8 @@ public class ManejarMenu : MonoBehaviour
             boton.text = "Continuar";
             menu.SetActive(false);
         }
-        else {
+        else
+        {
             boton.text = "Comenzar";
             menu.SetActive(true);
         }
