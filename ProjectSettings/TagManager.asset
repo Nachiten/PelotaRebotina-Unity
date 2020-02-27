@@ -8,6 +8,7 @@ TagManager:
   - PelotaIncorrecta
   - ParedMapa
   - FondoMapa
+  - PelotaBoost
   layers:
   - Default
   - TransparentFX

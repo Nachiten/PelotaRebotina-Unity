@@ -17,6 +17,9 @@ public class detectarClicks : MonoBehaviour
     float velocidadX;
     float velocidadY;
 
+    public float incrementoVelocidad = 0.3f;
+    public float disminucionVelocidad = -0.5f;
+
     public static bool perdio = false;
 
     // Update is called once per frame
@@ -59,7 +62,7 @@ public class detectarClicks : MonoBehaviour
                 // Aumentar velocidad de las pelotas CORRECTAS
                 foreach (GameObject unObjecto in GameObject.FindGameObjectsWithTag("PelotaCorrecta"))
                 {
-                    unObjecto.GetComponent<movimientoPelota>().aumentarVelocidad();
+                    unObjecto.GetComponent<movimientoPelota>().modificarVelocidadEn(incrementoVelocidad);
                 }
 
                 golpeCorrecto = true;
@@ -78,10 +81,24 @@ public class detectarClicks : MonoBehaviour
             case "FondoMapa":
                 Debug.Log("Le pegaste al FONDO DEL MAPA");
                 break;
+
+            case "PelotaBoost":
+
+                // Aumentar velocidad de las pelotas CORRECTAS
+                foreach (GameObject unObjecto in GameObject.FindGameObjectsWithTag("PelotaCorrecta"))
+                {
+                    unObjecto.GetComponent<movimientoPelota>().modificarVelocidadEn(disminucionVelocidad);
+                }
+
+                golpeCorrecto = true;
+
+                break;
+            
         }
 
         return golpeCorrecto;
     }
+
 
 
     void sumarUnaCorrecta()

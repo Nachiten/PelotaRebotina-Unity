@@ -29,13 +29,11 @@ public class movimientoPelota : MonoBehaviour
     {
     }
 
-    public void aumentarVelocidad() {
+    public void modificarVelocidadEn(float unValor) {
 
-        float aumentoVelocidad = 0.3f;
+        if (velocidadX > 0) velocidadX += unValor; else velocidadX -= unValor;
 
-        if (velocidadX > 0) velocidadX += aumentoVelocidad; else velocidadX -= aumentoVelocidad;
-
-        if (velocidadY > 0) velocidadY += aumentoVelocidad; else velocidadY -= aumentoVelocidad;
+        if (velocidadY > 0) velocidadY += unValor; else velocidadY -= unValor;
     }
 
 
